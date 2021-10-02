@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option csharp_namespace = "Todo.Grpc.Api.Proto";
+
+package public;
+
+// https://github.com/jvolkman/intellij-protobuf-editor#path-settings
+import "google/api/annotations.proto";
+
+// echo service definition
+service Echo {
+  // echo message
+  rpc GetEcho (EchoRequest) returns (EchoReply) {
+    option (google.api.http) = {
+      get: "/v1/echo/{message}"
+    };
+  }
+}
+
+// message to echo
+message EchoRequest {
+  string message = 1;
+}
+
+// return message to echo
+message EchoReply {
+  string message = 1;
+}

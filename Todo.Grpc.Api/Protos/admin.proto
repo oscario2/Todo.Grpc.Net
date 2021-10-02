@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option csharp_namespace = "Crypto.Web";
+
+package public;
+
+// https://github.com/jvolkman/intellij-protobuf-editor#path-settings
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+// https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule
+service Admin {
+  rpc GetStatus(google.protobuf.Empty) returns (GetStatusResponse) {
+    option (google.api.http) = {
+      get: "/v1/admin"
+    };
+  }
+}
+
+message GetStatusResponse {
+  int64 uptime = 1;
+}
